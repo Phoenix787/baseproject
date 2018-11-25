@@ -8,6 +8,7 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.shared.Registration;
+import org.github.legioth.field.Field;
 
 @PageTitle("Hello World with components")
 @Route(value = "component"/*, layout = MainLayout.class*/)
@@ -23,7 +24,7 @@ public class HelloWorldComponent extends Composite<Div> {
         MyTextField myTextField = new MyTextField();
 
         Binder<Person> binder = new Binder<>(Person.class);
-        binder.bind(myTextField, "name");
+        binder.bind(input, "name");
 
 
         Div greeting = new Div();
@@ -75,32 +76,38 @@ public class HelloWorldComponent extends Composite<Div> {
      */
     @Tag("paper-input")
     @HtmlImport("bower_components/paper-input/paper-input.html")
-    public static class PaperInput extends Component{
+    public static class PaperInput extends Component implements Field<PaperInput, String>{
+
+        public PaperInput() {
+            Field.initSingleProperty(this, "", "value")
+            .setSynchronizedEvent("value-changed");
+        }
 
         /**
          * Automatically send the current value  of the "value" property to the server
          * whenever a value-changed event is fired by the paper-input element
          */
 
-        @Synchronize("value-changed")
-        public String getValue() {
-            return getElement().getProperty("value");
-        }
+
+//        @Synchronize("value-changed")
+//        public String getValue() {
+//            return getElement().getProperty("value");
+//        }
 
         public void setStyle(String value) {
             getElement().setAttribute("style", value);
         }
 
-        /**
-         * Добавляем слушателя, который автоматически подключается
-         * к элементу DOM на основе аннотации класса событий определяемого ниже
-         * @param listener
-         *
-         * @return registration
-         */
-        public Registration addValueChangeListener(ComponentEventListener<ValueChangeEvent> listener){
-            return addListener(ValueChangeEvent.class, listener);
-        }
+//        /**
+//         * Добавляем слушателя, который автоматически подключается
+//         * к элементу DOM на основе аннотации класса событий определяемого ниже
+//         * @param listener
+//         *
+//         * @return registration
+//         */
+//        public Registration addValueChangeListener(ComponentEventListener<ValueChangeEvent> listener){
+//            return addListener(ValueChangeEvent.class, listener);
+//        }
     }
 
     @DomEvent("value-changed")

@@ -16,12 +16,12 @@ public class MyTextField extends Component implements Field<MyTextField, String>
                 .setSynchronizedEvent("change");
     }
 
-    @Synchronize("change")
-    public String getValue() {
-        return getElement().getProperty(PROPERTY_NAME);
-    }
-
-    public void setValue(String value) {
-        getElement().setProperty(PROPERTY_NAME, value);
-    }
+//    @Synchronize("change")
+//    public String getValue() {
+//        return getElement().getProperty(PROPERTY_NAME);
+//    }
+//
+//    public void setValue(String value) {
+//        getElement().setProperty(PROPERTY_NAME, value);
+//    }
 }
