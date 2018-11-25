@@ -1,0 +1,26 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/vaadin-button/vaadin-button.html">
+
+<dom-module id="hello-world">
+    <template>
+
+        <div>
+            <paper-input id="inputId" value="{{userInput}}" style="width: 200px;" floatingLabel label="Введите имя"></paper-input>
+            <paper-input id="counter" value="{{userInput}}" style="width: 200px;" char-counter></paper-input>
+            <vaadin-button id="helloButton" on-click="sayHello">Say Hello</vaadin-button>
+            <div id="greeting">[[greeting]]</div>
+        </div>
+
+    </template>
+
+    <script>
+        class HelloWorld extends Polymer.Element {
+          static get is() {
+            return 'hello-world';
+          }
+        }
+
+        customElements.define(HelloWorld.is, HelloWorld);
+    </script>
+</dom-module>
